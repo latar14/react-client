@@ -4,7 +4,7 @@ import { api } from "./api";
 
 export const userApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        loging: builder.mutation<              // mutation для post, query для get
+        login: builder.mutation<              // mutation для post, query для get
         {token: string},
         {email: string; password: string}>
         ({
@@ -47,5 +47,21 @@ export const userApi = api.injectEndpoints({
 })
 
 export const {
-    use
+    useRegisterMutation,
+    useLoginMutation,
+    useCurrentQuery,   //при запуске компонента отрпавляется только один запрос
+    useLazyCurrentQuery,  //мы сами можем вызывать
+    useGetuserByIdQuery,
+    useLazyGetuserByIdQuery,
+    useUpdateUserMutation
+} = userApi;
+
+export const {
+    endpoints: { 
+        login, 
+        register, 
+        current, 
+        getuserById, 
+        updateUser 
+    }
 } = userApi;
